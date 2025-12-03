@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PRECIOUS PEARL — Jewellery Boutique</title>
+  <meta name="description" content="PRECIOUS PEARL — modern luxury jewellery e-commerce demo" />
+
+ 
+  <link rel="stylesheet" href="style.css">
+  
+
+ 
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+</head>
+<body>
+
+  <header class="pp-header">
+    <div class="container-fluid nav">
+
+      <!-- BRAND -->
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2.5L15.8 8l-3.8 5.5L8.2 8 12 2.5z" fill="#fff" opacity="0.6"/>
+          </svg>
+        </div>
+        <div style="font-family: Cinzel;">
+          <h1 class="m-0" s>PRECIOUS PEARL</h1>
+          <div class="sub">Luxury Jewellery</div>
+        </div>
+      </div>
+
+      <!-- HAMBURGER BUTTON (mobile) -->
+      <button id="menuToggle" class="menu-toggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Toggle menu">☰</button>
+
+      <!-- DESKTOP NAV -->
+      <nav id="mainMenu" aria-label="Primary">
+        <div class="links navbar-nav ms-auto text-center text-lg-start">
+          <a href="#home" class="nav-link" data-nav>Home</a>
+          <a href="#products" class="nav-link" data-nav>Products</a>
+          <a href="#about" class="nav-link" data-nav>About</a>
+          <a href="#contact" class="nav-link" data-nav>Contact</a>
+          <a href="#cart" class="nav-link" data-nav>Cart</a>
+        </div>
+      </nav>
+
+      <!-- ACTION ICONS (desktop) -->
+      <div class="actions">
+        <button class="icon-btn" id="searchBtn" title="Search">🔍</button>
+        <button class="icon-btn" id="cartToggle" title="Cart">🛒<span id="cartCount" style="font-weight:700;margin-left:6px; color: #ffffff; ">0</span></button>
+      </div>
+
+    </div>
+
+    <!-- MOBILE NAV WRAPPER (animated slide) -->
+    <div id="mobileMenu" class="mobile-menu-wrapper" aria-hidden="true">
+      <div class="container-fluid">
+        <div class="mobile-links">
+          <a href="#home" class="nav-link" data-nav>Home</a>
+          <a href="#products" class="nav-link" data-nav>Products</a>
+          <a href="#about" class="nav-link" data-nav>About</a>
+          <a href="#contact" class="nav-link" data-nav>Contact</a>
+          <a href="#cart" class="nav-link" data-nav>Cart</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+<!-- JS FOR MOBILE MENU TOGGLE -->
+ <script>
+    // Wait for DOM
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggleBtn = document.getElementById('menuToggle');
+      const mobileWrapper = document.getElementById('mobileMenu');
+
+      // Toggle function
+      function toggleMenu() {
+        const isOpen = mobileWrapper.classList.toggle('open');
+        // update ARIA
+        toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        mobileWrapper.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+
+        // change button icon (optional: X icon)
+        toggleBtn.textContent = isOpen ? '✕' : '☰';
+      }
+
+      // click
+      toggleBtn.addEventListener('click', toggleMenu);
+
+      // close menu when a link is clicked (mobile)
+      mobileWrapper.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          if (mobileWrapper.classList.contains('open')) toggleMenu();
+        });
+      });
+
+      // close on ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileWrapper.classList.contains('open')) {
+          toggleMenu();
+          toggleBtn.focus();
+        }
+      });
+    });
+  </script>
+
+
+
+
+  
+
+  <main class="wrap" id="app">
+    <!-- HOME -->
+    <section id="home" class="page" aria-hidden="false" data-aos="fade-up" style="color: white;">
+      <div class="hero" data-aos="fade-right">
+        <div class="hero-left" style="font-family: Cinzel;">
+          <div class="tags">PRECIOUS PEARL · Handmade · Ethically Sourced</div>
+          <h2 class="headline">TIMELESS JEWELLERY, MODERN DESIGN CRAFTED TO BE CHERISHED .</h2>
+          <p class="sub">Discover fine necklaces, rings and earrings made with real pearls & diamonds. Free shipping and 30-day returns.</p>
+          <div class="cta"><button class="btn" onclick="navigateTo('products')">Shop Collections</button></div>
+        </div>
+        <div style="flex:0 0 360px;display:grid;place-items:center ;  width: 100%;
+  height: auto;
+  object-fit: cover;      
+  object-position: center; 
+  display: block;" data-aos="fade-left"> 
+        <div class="image-card">
+          <img src="01.jpg" alt="brand" >
+        </div>
+
+        </div>
+
+      </div>
+       <div style="flex:0 0 360px;display:grid;place-items:center" data-aos="fade-left">
+        <div class="image-m">
+          <img src="11.jpg" alt="brand" width="100%">
+        </div>
+
+        </div> <br><br>
+        <section aria-labelledby="featured" class="fade-up" id="featured" data-aos="fade-up" data-aos-delay="80" style="font-family: Cinzel;">
+        <h2 class="section-title" style="color: #ffffff;">Featured Collections</h2>
+        <p class="lead">Handpicked pieces — updated frequently.</p>
+        <div class="grid" id="productGrid"></div>
+      </section>
+      </section>
+   
+    
+
+    <!-- PRODUCTS (full page) -->
+    <section id="products" class="page" aria-hidden="true" style="display:none ;color: white;font-family: Cinzel;" data-aos="fade-up" >
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <h2 class="section-title">ALL PRODUCTS</h2>
+          <p class="lead">Browse our complete catalogue.</p>
+        </div>
+        <div>
+          <input id="searchInput" placeholder="Search products..." style="padding:8px;border-radius:8px;border:1px solid rgba(0,0,0,0.06)" oninput="renderProducts(this.value)">
+        </div>
+      </div>
+      <div class="grid" id="allProductsGrid" style="margin-top:18px"></div>
+    </section>
+
+    <!-- PRODUCT DETAIL -->
+    <section id="productDetail" class="page" aria-hidden="true" style="display:none" data-aos="fade-up" style="color: white;">
+      <button onclick="navigateTo('products')" class="btn" style="margin-bottom:12px">← Back to products</button>
+      <div class="product-detail" id="pdRoot"></div>
+    </section>
+
+    <!-- CART PAGE -->
+    <section id="cart" class="page" aria-hidden="true" style="display:none ; font-family: Cinzel;" data-aos="fade-up" >
+      <h2 class="section-title"style="color: white;    ">YOUR CART</h2>
+      <p class="lead">Review items, update quantities, and proceed to checkout.</p>
+      <div class="cart-table" id="cartTable" style="margin-top:12px"></div>
+      <div style="margin-top:12px;display:flex;justify-content:space-between;gap:12px;align-items:center">
+        <div>
+          <button class="btn" onclick="navigateTo('products')">Continue shopping</button>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <div style="text-align:right;color:var(--muted)">Subtotal<br><div id="cartPageSubtotal" style="font-weight:800">₹0</div></div>
+          <button class="btn" onclick="openCheckout()">Checkout</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="page" aria-hidden="true" style="display:none" data-aos="fade-up" style="color: white;">
+      <h2 class="section-title" style="color: white; font-family: Cinzel;">ABOUT PRECIOUS PEARL</h2>
+      <p class="lead" style=" font-family: Cinzel;">PRECIOUS PEARL is a modern luxury jewellery house where elegance, artistry, and rare beauty come together. Every piece is crafted to celebrate refinement — combining timeless design with contemporary sophistication. Our collections are inspired by the brilliance of natural gemstones, the purity of pearls, and the allure of fine metals, resulting in jewellery that elevates every moment. At PRECIOUS PEARL, luxury isn’t just worn — it is felt, cherished, and passed down through generations.</p> <br>
+      <img src="30.jpg" alt="" width="100%" style="border-radius: 15px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:12px ;  font-family: Cinzel;">
+        <div style="background:var(--card);padding:14px;border-radius:12px;box-shadow:var(--glass-shadow)">
+          <h4>Our Story</h4>
+          <p class="muted">Born from a passion for craftsmanship and a deep appreciation for exquisite detail, PRECIOUS PEARL began with a single vision: to create jewellery that speaks to the soul. What started as a small artisan studio has grown into a distinguished brand admired for its artistry and uncompromising quality. Every design reflects our journey — blending traditional techniques with modern innovation. From hand-picked pearls to precision-cut gemstones, our story is written in the hands of skilled jewellers who turn inspiration into heirloom treasures.</p>
+        </div>
+        <div style="background:var(--card);padding:14px;border-radius:12px;box-shadow:var(--glass-shadow)">
+          <h4>Ethical Sourcing</h4>
+          <p class="muted">We believe true luxury should never come at the cost of people or the planet. That’s why PRECIOUS PEARL is committed to sourcing all gems and metals from ethical, traceable, and responsible suppliers. Our materials are carefully selected to ensure they meet the highest standards of sustainability and fair labour practices. From conflict-free stones to environmentally conscious production, we craft every piece with integrity — so you can shop with confidence, knowing your jewellery reflects both beauty and values.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="page" aria-hidden="true" style="display:none" data-aos="fade-up" style="color: white;">
+      <h2 class="section-title" style="color: white;font-family: Cinzel;">CONTACT</h2>
+      <p class="lead" style="font-family: Cinzel;">Get in touch for custom orders or support.</p>
+      <form id="contactForm" style="margin-top:12px;display:grid;gap:8px;max-width:640px">
+        <input id="cname" placeholder="Full name" required />
+        <input id="cemail" placeholder="Email" required />
+        <input id="cphone" placeholder="Phone (optional)" />
+        <textarea id="cmsg" placeholder="Message" rows="4" required></textarea>
+        <div style="display:flex;gap:8px">
+          <button class="btn" type="submit">Send message</button>
+          <button type="button" class="btn" onclick="navigateTo('home')" style="background:#eee;color:#111">Cancel</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- FOOTER (enhanced) -->
+    <footer data-aos="fade-up" style="margin-top:40px;padding:48px 20px;border-top:1px solid rgba(255, 255, 255, 0.04); background-color:  rgba(1, 56, 65, 0.9);color: #ffffff;font-family: Cinzel;">
+      <div  class="footer-grid" style="max-width:var(--max-width);margin:0 auto;" style="max-width:var(--max-width);margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr 300px;gap:20px;align-items:start">
+        <div>
+          <h4 style="margin:0 0 8px 0">PRECIOUS PEARL</h4>
+          <div class="muted" style="max-width:320px;color: #eee;">Handmade, ethically sourced fine jewellery. Crafted with care in small batches to ensure quality and sustainability.</div>
+          <div style="margin-top:12px;color: #eee;" class="muted">© PRECIOUS PEARL · Crafted with care</div>
+        </div>
+
+        <div>
+          <h4 style="margin:0 0 8px 0">Quick Links</h4>
+          <nav class="muted" style="display:flex;flex-direction:column;gap:6px;color: #eee;">
+            <a href="#home" style="text-decoration:none;color:inherit">Home</a>
+            <a href="#products" style="text-decoration:none;color:inherit">Products</a>
+            <a href="#about" style="text-decoration:none;color:inherit">About</a>
+            <a href="#contact" style="text-decoration:none;color:inherit">Contact</a>
+          </nav>
+        </div>
+
+        <div>
+          <h4 style="margin:0 0 8px 0">Contact</h4>
+          <div class="muted" style="display:flex;flex-direction:column;gap:6px;color: #eee;">
+            <div>📍 31/612 idappalli, kochi, Kerala</div>
+            <div>✉️ <a href="mailto:hello@preciouspearl.in" style="color:inherit;text-decoration:none">hello@preciouspearl.in</a></div>
+            <div>📞 <a href="tel:+911234567890" style="color:inherit;text-decoration:none">+91 12345 67890</a></div>
+          </div>
+        </div>
+
+        <div>
+          <h4 style="margin:0 0 8px 0">Stay in touch</h4>
+          <p class="muted" style="margin-top:0;color: #eee;">Subscribe for new arrivals.</p> <br>
+          <form onsubmit="event.preventDefault(); alert('Thanks — subscribed (demo).');" style="display:flex;gap:8px;align-items:center">
+            <input placeholder="Email address" required style="padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);flex:1">
+            <button class="btn" type="submit">Subscribe</button>
+          </form>
+          <div style="margin-top:12px;display:flex;gap:8px" class="muted">
+             <a href="https://www.instagram.com/jueaydez?igsh=ZzZncWpvZmVnMWp3" style="text-decoration:none">Instagram</a>
+            <a href="https://in.pinterest.com/Ajueayy/" style="text-decoration:none">Pinterest</a>
+            <a href="https://www.behance.net/ajmalaju165" style="text-decoration:none">Facebook</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- cart drawer -->
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true" data-aos="fade-left">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <strong>Your Cart</strong>
+      <div>
+        <button onclick="clearCart()" style="background:transparent;border:0;color:var(--muted);cursor:pointer">Clear</button>
+        <button onclick="toggleCart()" style="margin-left:8px;background:transparent;border:0;cursor:pointer">Close</button>
+      </div>
+    </div>
+    <div class="cart-list" id="cartList"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+      <div>
+        <div class="muted">Subtotal</div>
+        <div style="font-weight:800" id="cartSubtotal">₹0</div>
+      </div>
+      <div>
+        <button class="btn" onclick="openCheckout()">Checkout</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- checkout modal -->
+  <div class="modal" id="checkoutModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="sheet">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3>Checkout</h3>
+        <button onclick="closeCheckout()" style="border:0;background:transparent;cursor:pointer">✕</button>
+      </div>
+      <div style="display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-top:12px">
+        <div>
+          <div class="form-grid">
+            <input id="name" placeholder="Full name" />
+            <input id="email" placeholder="Email" />
+            <input id="phone" placeholder="Phone" />
+            <input id="city" placeholder="City" />
+            <input id="postal" placeholder="Postal code" />
+            <select id="country"><option>India</option><option>United States</option><option>United Kingdom</option></select>
+            <textarea id="address" placeholder="Full address" rows="3"></textarea>
+          </div>
+        </div>
+        <div>
+          <div style="background:var(--bg);padding:12px;border-radius:10px;background-color: #eee;">
+            <strong>Order summary</strong>
+            <div id="miniSummary" style="margin-top:8px"></div>
+            <div style="margin-top:10px;display:flex;gap:8px;flex-direction:column">
+              <label class="muted">Payment method</label>
+              <select id="paymentMethod">
+                <option value="card">Card (Simulated)</option>
+                <option value="upi">UPI</option>
+                <option value="netbank">Netbanking</option>
+              </select>
+              <button class="btn" style="margin-top:10px" onclick="placeOrder()">Pay & Place Order</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- confirmation modal -->
+  <div class="modal" id="confirmModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="sheet" style="max-width:520px">
+      <div class="confirm" id="confirmContent">
+        <!-- filled dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- Data ---
+   const PRODUCTS = [
+  {id:'P-001',title:'Luna Necklace',price:189999,img:'04.jpg', desc:'Elegant  necklace on 14k gold.'},
+  {id:'P-002',title:'Aurora Diamond Ring',price:129999,img:'03.jpg', desc:'Brilliant cut diamond ring with halo setting.'},
+  {id:'P-003',title:'Pearl Drop Earrings',price:499999,img:'05.jpg', desc:'Delicate drop earrings with freshwater pearls.'},
+  {id:'P-004',title:'Opal Charm Bracelet',price:699999,img:'20.jpg', desc:'Multi-opal charm bracelet, adjustable.'},
+  {id:'P-005',title:'Halo Studs',price:299999,img:'10.jpg', desc:'Classic halo stud earrings.'},
+  {id:'P-006',title:'Classic  Bracelet',price:799999,img:'09.jpg', desc:'Satin-finished pearl bracelet with secure clasp.'},
+
+  {id:'P-007', title:'Royal Ruby Ring', price:159999, img:'08.jpg', desc:'Deep red ruby set in 18k rose gold.'},
+  {id:'P-008', title:'Emerald Queen Necklace', price:189999, img:'12.jpg', desc:'High-clarity emerald centerpiece necklace.'},
+  {id:'P-009', title:'Diamond Starlight Empress Ring', price:299999, img:'11.jpg', desc:'Full diamond line bracelet, premium cut.'},
+  {id:'P-010', title:'Sapphire Ocean Earrings', price:199999, img:'14.jpg', desc:'Blue sapphire gemstone earrings.'},
+  {id:'P-011', title:'Heavenly Glow Drop Earrings', price:159999, img:'21.jpg', desc:'Deep red ruby set in 18k rose gold.'},
+  {id:'P-012', title:'Nova Luxe Solitaire Ring', price:149999, img:'06.jpg', desc:'High-clarity emerald centerpiece necklace.'},
+  {id:'P-013', title:' golden bracelet with bells on brides leg painted', price:399999, img:'18.jpg', desc:'Full diamond line bracelet, premium cut.'},
+  {id:'P-014', title:'Opaline Luxe Bangle', price:499999, img:'22.jpg', desc:'Blue sapphire gemstone earrings.'},
+  {id:'P-015', title:'Royal Dew Pearl Earrings', price:139999, img:'23.jpg', desc:'Deep red ruby set in 18k rose gold.'},
+  {id:'P-016', title:'Celestine Radiance Necklace', price:169999, img:'17.jpg', desc:'High-clarity emerald centerpiece necklace.'},
+  {id:'P-017', title:'Imperial Lumière Ring', price:209999, img:'16.jpg', desc:'Full diamond line bracelet, premium cut.'},
+  {id:'P-018', title:'Starlit Tide Earrings', price:409999, img:'24.jpg', desc:'Blue sapphire gemstone earrings.'}
+];
+    // --- Utilities ---
+    const $ = (sel,root=document)=>root.querySelector(sel);
+    const $$ = (sel,root=document)=>Array.from(root.querySelectorAll(sel));
+
+    // --- Routing (simple SPA) ---
+    const pages = ['home','products','productDetail','cart','about','contact'];
+    function navigateTo(page, opts){
+      pages.forEach(p=>{
+        const el = document.getElementById(p);
+        if(!el) return;
+        if(p===page){ el.style.display='block'; el.setAttribute('aria-hidden','false'); }
+        else{ el.style.display='none'; el.setAttribute('aria-hidden','true'); }
+      });
+      // update URL hash
+      if(page==='productDetail' && opts && opts.id){ location.hash = '#product:'+opts.id; }
+      else location.hash = '#'+page;
+      // animate appearance
+      setTimeout(()=>{ $$('.fade-up').forEach(el=>el.classList.add('show')) },40);
+      if(page==='products') renderProducts();
+      if(page==='cart') renderCartPage();
+      // refresh AOS (so elements added/changed animate)
+      if(window.AOS) setTimeout(()=>AOS.refresh(),80);
+    }
+
+    // Read hash on load
+    function handleHash(){
+      const h = location.hash.replace('#','');
+      if(!h) return navigateTo('home');
+      if(h.startsWith('product:')){ const id = h.split(':')[1]; openProductDetail(id); return }
+      const p = h.split('?')[0]; navigateTo(p||'home');
+    }
+    window.addEventListener('hashchange', handleHash);
+
+    // --- Renderers ---
+    function renderProducts(filter=''){
+      const grid = $('#allProductsGrid'); const featured = $('#productGrid');
+      grid.innerHTML=''; featured.innerHTML='';
+      const list = PRODUCTS.filter(p=>p.title.toLowerCase().includes(filter.toLowerCase())||p.desc.toLowerCase().includes(filter.toLowerCase()));
+      list.forEach((p,i)=>{
+        const el = document.createElement('article'); el.className='card';
+        // add AOS attributes for nice staggered reveal
+        el.setAttribute('data-aos','fade-up');
+        el.setAttribute('data-aos-delay', String((i%6)*40));
+        el.innerHTML = `
+          <div class="product-media"><img src="${p.img}" alt="${p.title}" loading="lazy"></div>
+          <div class="title">${p.title}</div>
+          <div class="muted">SKU ${p.id}</div>
+          <div class="meta">
+            <div class="price">₹${p.price.toLocaleString()}</div>
+            <div style="display:flex;gap:8px">
+              <button class="btn" onclick="addToCart('${p.id}')">Add</button>
+              <button class="icon-btn"  onclick="openProductDetail('${p.id}')">View</button>
+            </div>
+          </div>`;
+        grid.appendChild(el);
+      });
+      // featured: show first 3
+      PRODUCTS.slice(0,3).forEach((p,i)=>{
+        const el = document.createElement('article'); el.className='card';
+        el.setAttribute('data-aos','zoom-in');
+        el.setAttribute('data-aos-delay', String(i*60));
+        el.innerHTML = `
+          <div class="product-media"><img src="${p.img}" alt="${p.title}" loading="lazy"></div>
+          <div class="title">${p.title}</div>
+          <div class="muted">SKU ${p.id}</div>
+          <div class="meta">
+            <div class="price">₹${p.price.toLocaleString()}</div>
+            <div><button class="btn" onclick="openProductDetail('${p.id}')">Details</button></div>
+          </div>`;
+        featured.appendChild(el);
+      });
+
+      // refresh AOS so newly-inserted cards animate
+      if(window.AOS) setTimeout(()=>AOS.refresh(),100);
+    }
+
+    function openProductDetail(id){
+      const p = PRODUCTS.find(x=>x.id===id); if(!p) return;
+      const root = $('#pdRoot'); root.innerHTML='';
+      const left = document.createElement('div'); left.innerHTML = `
+        <div class="pd-media"><img src="${p.img}" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="pd-thumbs" id="pdThumbs"></div>`;
+      const right = document.createElement('div'); right.innerHTML = `
+        <h3 style="margin-top:0">${p.title}</h3>
+        <div class="muted">SKU ${p.id}</div>
+        <div style="margin-top:8px;font-size:18px;color:var(--accent);font-weight:800">₹${p.price.toLocaleString()}</div>
+        <p class="muted" style="margin-top:12px">${p.desc}</p>
+        <div style="display:flex;gap:8px;margin-top:12px"><button class="btn" onclick="addToCart('${p.id}'); navigateTo('cart')">Add to cart</button><button class="icon-btn" onclick="addToCart('${p.id}')">Quick add</button></div>`;
+      root.appendChild(left); root.appendChild(right);
+      // thumbs
+      const thumbs = $('#pdThumbs'); ['',''].forEach((_,i)=>{ const t = document.createElement('div'); t.className='thumb'+(i===0?' active':''); t.innerHTML = `<img src="${p.img}" alt="thumb">`; t.addEventListener('click', ()=>{ $$('.thumb').forEach(x=>x.classList.remove('active')); t.classList.add('active'); $('.pd-media img').src = p.img }); thumbs.appendChild(t) });
+      navigateTo('productDetail');
+    }
+
+    // --- Cart logic ---
+    let CART = JSON.parse(localStorage.getItem('pp_cart')||'{}');
+    function saveCart(){ localStorage.setItem('pp_cart', JSON.stringify(CART)); updateCartUI(); }
+    function addToCart(id){ if(!CART[id]) CART[id]=0; CART[id]++; saveCart(); animateAdd(); }
+    function setQty(id,q){ if(q<=0) delete CART[id]; else CART[id]=q; saveCart(); }
+    function clearCart(){ CART={}; saveCart(); }
+    function cartItems(){ return Object.entries(CART).map(([id,q])=>{ const p = PRODUCTS.find(x=>x.id===id); return {...p, qty:q}; }); }
+
+    function updateCartUI(){ const list = $('#cartList'); list.innerHTML=''; const items = cartItems(); let subtotal=0; items.forEach(it=>{ subtotal += it.price * it.qty; const node = document.createElement('div'); node.className='cart-item'; node.innerHTML = `
+        <img src="${it.img}" alt="${it.title}">
+        <div style="flex:1">
+          <div style="font-weight:700">${it.title}</div>
+          <div class="muted">₹${it.price.toLocaleString()}</div>
+          <div style="margin-top:6px;display:flex;justify-content:space-between;align-items:center">
+            <div class="qty">
+              <button onclick="changeQty('${it.id}', -1)">-</button>
+              <div style="min-width:28px;text-align:center">${it.qty}</div>
+              <button onclick="changeQty('${it.id}', 1)">+</button>
+            </div>
+            <div><button onclick="removeItem('${it.id}')" style="border:0;background:transparent;color:var(--muted);cursor:pointer">Remove</button></div>
+          </div>
+        </div>`; list.appendChild(node); });
+      $('#cartSubtotal').textContent = '₹' + subtotal.toLocaleString(); $('#cartCount').textContent = items.reduce((s,i)=>s+i.qty,0);
+      // mini summary
+      const mini = $('#miniSummary'); mini.innerHTML=''; items.forEach(it=>{ const r = document.createElement('div'); r.style.display='flex'; r.style.justifyContent='space-between'; r.style.marginTop='6px'; r.innerHTML = `<div style="font-size:14px">${it.title} × ${it.qty}</div><div style="font-weight:700">₹${(it.price*it.qty).toLocaleString()}</div>`; mini.appendChild(r); }); if(items.length===0){ mini.innerHTML = '<div class="muted">No items in cart</div>' }
+    }
+
+    function changeQty(id, delta){ const q = (CART[id]||0) + delta; setQty(id,q); }
+    function removeItem(id){ delete CART[id]; saveCart(); }
+
+    // cart drawer toggle
+    function toggleCart(){ const drawer = $('#cartDrawer'); const open = drawer.classList.toggle('open'); drawer.setAttribute('aria-hidden', !open); $('#cartToggle').setAttribute('aria-expanded', open); }
+    $('#cartToggle').addEventListener('click', ()=>toggleCart());
+
+    // cart page render
+    function renderCartPage(){ const table = $('#cartTable'); const items = cartItems(); table.innerHTML=''; if(items.length===0){ table.innerHTML = '<div class="muted">Your cart is empty</div>'; $('#cartPageSubtotal').textContent = '₹0'; return }
+      items.forEach(it=>{ const row = document.createElement('div'); row.className='cart-row'; row.innerHTML = `
+        <img src="${it.img}" alt="${it.title}" style="width:78px;height:78px;object-fit:cover;border-radius:8px">
+        <div style="flex:1">
+          <div style="font-weight:700">${it.title}</div>
+          <div class="muted">SKU ${it.id}</div>
+          <div style="margin-top:8px;display:flex;align-items:center;gap:8px"><div class="qty"><button onclick="changeQty('${it.id}', -1)">-</button><div style="min-width:36px;text-align:center">${it.qty}</div><button onclick="changeQty('${it.id}', 1)">+</button></div></div>
+        </div>
+        <div style="text-align:right"><div style="font-weight:800">₹${(it.price*it.qty).toLocaleString()}</div><div style="margin-top:8px"><button class="icon-btn" onclick="removeItem('${it.id}')">Remove</button></div></div>`; table.appendChild(row); });
+      const subtotal = items.reduce((s,i)=>s+i.price*i.qty,0); $('#cartPageSubtotal').textContent = '₹'+subtotal.toLocaleString(); }
+
+    // checkout
+    function openCheckout(){ if(Object.keys(CART).length===0){ alert('Cart is empty'); return } $('#checkoutModal').classList.add('open'); $('#checkoutModal').setAttribute('aria-hidden', false); }
+    function closeCheckout(){ $('#checkoutModal').classList.remove('open'); $('#checkoutModal').setAttribute('aria-hidden', true); }
+
+    function placeOrder(){ const name = $('#name').value.trim(); if(!name){ alert('Enter name'); return }
+      const orderId = 'PP' + Date.now().toString(36).toUpperCase().slice(-8);
+      const items = cartItems(); const subtotal = items.reduce((s,i)=>s+i.price*i.qty,0);
+      CART = {}; saveCart(); closeCheckout(); showConfirmation(orderId, name, items, subtotal);
+    }
+
+    function showConfirmation(orderId, name, items, subtotal){ $('#confirmContent').innerHTML = `
+      <div style="font-size:36px;margin-bottom:6px">🎉</div>
+      <div style="font-weight:800">Order Confirmed</div>
+      <div class="muted" style="margin-top:6px">Thank you, ${name}. Your order <strong>${orderId}</strong> has been placed.</div>
+      <div style="margin-top:12px;width:100%"><div style="background:var(--bg);padding:12px;border-radius:10px;"><strong>Order summary</strong><div style="margin-top:8px">${items.map(it=>`<div style='display:flex;justify-content:space-between;margin-top:6px'><div>${it.title} × ${it.qty}</div><div>₹${(it.price*it.qty).toLocaleString()}</div></div>`).join('')}</div><div style="display:flex;justify-content:space-between;margin-top:10px;font-weight:800"><div>Total</div><div>₹${subtotal.toLocaleString()}</div></div></div></div>
+      <div style="margin-top:12px;display:flex;gap:8px"><button class="btn" onclick="closeConfirm()">Continue shopping</button><a href="#" onclick="downloadInvoice(event,'${orderId}')" style="align-self:center">Download invoice</a></div>`;
+      $('#confirmModal').classList.add('open'); $('#confirmModal').setAttribute('aria-hidden', false);
+    }
+    function closeConfirm(){ $('#confirmModal').classList.remove('open'); $('#confirmModal').setAttribute('aria-hidden', true); }
+
+    function downloadInvoice(e,orderId){ e.preventDefault(); const invoice = `Invoice - ${orderId}\nShop: PRECIOUS PEARL\nDate: ${new Date().toLocaleString()}\n\n(For demo only)`; const blob = new Blob([invoice],{type:'text/plain'}); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href=url; a.download = orderId + '.txt'; a.click(); URL.revokeObjectURL(url); }
+
+    // small flourish when adding
+    function animateAdd(){ const btn = document.querySelector('.btn'); if(!btn) return; btn.classList.add('pulse'); setTimeout(()=>btn.classList.remove('pulse'),600); }
+
+    // init
+    renderProducts(); updateCartUI(); handleHash();
+
+    // close drawer when clicking outside
+    document.addEventListener('click',(e)=>{ const drawer = $('#cartDrawer'); if(!drawer.contains(e.target) && !$('#cartToggle').contains(e.target) && drawer.classList.contains('open')){ drawer.classList.remove('open'); drawer.setAttribute('aria-hidden', true); } });
+
+    // contact form
+    $('#contactForm').addEventListener('submit', (e)=>{ e.preventDefault(); alert('Thanks! Your message has been sent (demo).'); $('#contactForm').reset(); navigateTo('home'); });
+
+    // expose for console convenience
+    window.addToCart = addToCart; window.toggleCart = toggleCart; window.clearCart = clearCart; window.changeQty = changeQty; window.removeItem = removeItem; window.openCheckout = openCheckout; window.closeCheckout = closeCheckout; window.placeOrder = placeOrder; window.closeConfirm = closeConfirm; window.downloadInvoice = downloadInvoice; window.navigateTo = navigateTo; window.openProductDetail = openProductDetail;
+  </script>
+
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      if(window.AOS) AOS.init({ duration: 650, once: true, easing: 'ease-out-cubic' });
+      // small defer refresh to apply to initial dynamic content
+      setTimeout(()=>{ if(window.AOS) AOS.refresh(); }, 120);
+    });
+  </script>
+
+
+<script>
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.querySelector("nav .links");
+
+menuToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("show");
+});
+</script>
+
+
+
+
+</body>
+</html>
