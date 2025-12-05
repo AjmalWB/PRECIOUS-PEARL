@@ -18,7 +18,7 @@
   <header class="pp-header">
     <div class="container-fluid nav">
 
-      <!-- BRAND -->
+      
       <div class="brand">
         <div class="logo" aria-hidden="true">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
@@ -32,10 +32,10 @@
         </div>
       </div>
 
-      <!-- HAMBURGER BUTTON (mobile) -->
+    
       <button id="menuToggle" class="menu-toggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Toggle menu">☰</button>
 
-      <!-- DESKTOP NAV -->
+     
       <nav id="mainMenu" aria-label="Primary">
         <div class="links navbar-nav ms-auto text-center text-lg-start">
           <a href="#home" class="nav-link" data-nav>Home</a>
@@ -46,7 +46,7 @@
         </div>
       </nav>
 
-      <!-- ACTION ICONS (desktop) -->
+     
       <div class="actions">
         <button class="icon-btn" id="searchBtn" title="Search">🔍</button>
         <button class="icon-btn" id="cartToggle" title="Cart">🛒<span id="cartCount" style="font-weight:700;margin-left:6px; color: #ffffff; ">0</span></button>
@@ -54,7 +54,7 @@
 
     </div>
 
-    <!-- MOBILE NAV WRAPPER (animated slide) -->
+    
     <div id="mobileMenu" class="mobile-menu-wrapper" aria-hidden="true">
       <div class="container-fluid">
         <div class="mobile-links">
@@ -68,35 +68,35 @@
     </div>
   </header>
 
-<!-- JS FOR MOBILE MENU TOGGLE -->
+
  <script>
-    // Wait for DOM
+    
     document.addEventListener('DOMContentLoaded', function () {
       const toggleBtn = document.getElementById('menuToggle');
       const mobileWrapper = document.getElementById('mobileMenu');
 
-      // Toggle function
+      
       function toggleMenu() {
         const isOpen = mobileWrapper.classList.toggle('open');
-        // update ARIA
+       
         toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         mobileWrapper.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
 
-        // change button icon (optional: X icon)
+        
         toggleBtn.textContent = isOpen ? '✕' : '☰';
       }
 
-      // click
+     
       toggleBtn.addEventListener('click', toggleMenu);
 
-      // close menu when a link is clicked (mobile)
+      
       mobileWrapper.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', () => {
           if (mobileWrapper.classList.contains('open')) toggleMenu();
         });
       });
 
-      // close on ESC
+      
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && mobileWrapper.classList.contains('open')) {
           toggleMenu();
@@ -148,7 +148,7 @@
    
     
 
-    <!-- PRODUCTS (full page) -->
+  
     <section id="products" class="page" aria-hidden="true" style="display:none ;color: white;font-family: Cinzel;" data-aos="fade-up" >
       <div style="display:flex;justify-content:space-between;align-items:center">
         <div>
@@ -162,13 +162,13 @@
       <div class="grid" id="allProductsGrid" style="margin-top:18px"></div>
     </section>
 
-    <!-- PRODUCT DETAIL -->
+   
     <section id="productDetail" class="page" aria-hidden="true" style="display:none" data-aos="fade-up" style="color: white;">
       <button onclick="navigateTo('products')" class="btn" style="margin-bottom:12px">← Back to products</button>
       <div class="product-detail" id="pdRoot"></div>
     </section>
 
-    <!-- CART PAGE -->
+ 
     <section id="cart" class="page" aria-hidden="true" style="display:none ; font-family: Cinzel;" data-aos="fade-up" >
       <h2 class="section-title"style="color: white;    ">YOUR CART</h2>
       <p class="lead">Review items, update quantities, and proceed to checkout.</p>
@@ -184,7 +184,7 @@
       </div>
     </section>
 
-    <!-- ABOUT -->
+    
     <section id="about" class="page" aria-hidden="true" style="display:none" data-aos="fade-up" style="color: white;">
       <h2 class="section-title" style="color: white; font-family: Cinzel;">ABOUT PRECIOUS PEARL</h2>
       <p class="lead" style=" font-family: Cinzel;">PRECIOUS PEARL is a modern luxury jewellery house where elegance, artistry, and rare beauty come together. Every piece is crafted to celebrate refinement — combining timeless design with contemporary sophistication. Our collections are inspired by the brilliance of natural gemstones, the purity of pearls, and the allure of fine metals, resulting in jewellery that elevates every moment. At PRECIOUS PEARL, luxury isn’t just worn — it is felt, cherished, and passed down through generations.</p> <br>
@@ -201,7 +201,7 @@
       </div>
     </section>
 
-    <!-- CONTACT -->
+    
     <section id="contact" class="page" aria-hidden="true" style="display:none" data-aos="fade-up" style="color: white;">
       <h2 class="section-title" style="color: white;font-family: Cinzel;">CONTACT</h2>
       <p class="lead" style="font-family: Cinzel;">Get in touch for custom orders or support.</p>
@@ -217,7 +217,7 @@
       </form>
     </section>
 
-    <!-- FOOTER (enhanced) -->
+   
     <footer data-aos="fade-up" style="margin-top:40px;padding:48px 20px;border-top:1px solid rgba(255, 255, 255, 0.04); background-color:  rgba(1, 56, 65, 0.9);color: #ffffff;font-family: Cinzel;">
       <div  class="footer-grid" style="max-width:var(--max-width);margin:0 auto;" style="max-width:var(--max-width);margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr 300px;gap:20px;align-items:start">
         <div>
@@ -262,7 +262,7 @@
     </footer>
   </main>
 
-  <!-- cart drawer -->
+  
   <aside class="cart-drawer" id="cartDrawer" aria-hidden="true" data-aos="fade-left">
     <div style="display:flex;justify-content:space-between;align-items:center">
       <strong>Your Cart</strong>
@@ -283,7 +283,7 @@
     </div>
   </aside>
 
-  <!-- checkout modal -->
+  
   <div class="modal" id="checkoutModal" role="dialog" aria-modal="true" aria-hidden="true">
     <div class="sheet">
       <div style="display:flex;justify-content:space-between;align-items:center">
@@ -321,17 +321,17 @@
     </div>
   </div>
 
-  <!-- confirmation modal -->
+  
   <div class="modal" id="confirmModal" role="dialog" aria-modal="true" aria-hidden="true">
     <div class="sheet" style="max-width:520px">
       <div class="confirm" id="confirmContent">
-        <!-- filled dynamically -->
+      
       </div>
     </div>
   </div>
 
   <script>
-    // --- Data ---
+    
    const PRODUCTS = [
   {id:'P-001',title:'Luna Necklace',price:189999,img:'04.jpg', desc:'Elegant  necklace on 14k gold.'},
   {id:'P-002',title:'Aurora Diamond Ring',price:129999,img:'03.jpg', desc:'Brilliant cut diamond ring with halo setting.'},
@@ -353,11 +353,11 @@
   {id:'P-017', title:'Imperial Lumière Ring', price:209999, img:'16.jpg', desc:'Full diamond line bracelet, premium cut.'},
   {id:'P-018', title:'Starlit Tide Earrings', price:409999, img:'24.jpg', desc:'Blue sapphire gemstone earrings.'}
 ];
-    // --- Utilities ---
+    
     const $ = (sel,root=document)=>root.querySelector(sel);
     const $$ = (sel,root=document)=>Array.from(root.querySelectorAll(sel));
 
-    // --- Routing (simple SPA) ---
+   
     const pages = ['home','products','productDetail','cart','about','contact'];
     function navigateTo(page, opts){
       pages.forEach(p=>{
@@ -366,10 +366,10 @@
         if(p===page){ el.style.display='block'; el.setAttribute('aria-hidden','false'); }
         else{ el.style.display='none'; el.setAttribute('aria-hidden','true'); }
       });
-      // update URL hash
+     
       if(page==='productDetail' && opts && opts.id){ location.hash = '#product:'+opts.id; }
       else location.hash = '#'+page;
-      // animate appearance
+      
       setTimeout(()=>{ $$('.fade-up').forEach(el=>el.classList.add('show')) },40);
       if(page==='products') renderProducts();
       if(page==='cart') renderCartPage();
@@ -377,7 +377,7 @@
       if(window.AOS) setTimeout(()=>AOS.refresh(),80);
     }
 
-    // Read hash on load
+    
     function handleHash(){
       const h = location.hash.replace('#','');
       if(!h) return navigateTo('home');
@@ -386,14 +386,14 @@
     }
     window.addEventListener('hashchange', handleHash);
 
-    // --- Renderers ---
+  
     function renderProducts(filter=''){
       const grid = $('#allProductsGrid'); const featured = $('#productGrid');
       grid.innerHTML=''; featured.innerHTML='';
       const list = PRODUCTS.filter(p=>p.title.toLowerCase().includes(filter.toLowerCase())||p.desc.toLowerCase().includes(filter.toLowerCase()));
       list.forEach((p,i)=>{
         const el = document.createElement('article'); el.className='card';
-        // add AOS attributes for nice staggered reveal
+       
         el.setAttribute('data-aos','fade-up');
         el.setAttribute('data-aos-delay', String((i%6)*40));
         el.innerHTML = `
@@ -409,7 +409,7 @@
           </div>`;
         grid.appendChild(el);
       });
-      // featured: show first 3
+     
       PRODUCTS.slice(0,3).forEach((p,i)=>{
         const el = document.createElement('article'); el.className='card';
         el.setAttribute('data-aos','zoom-in');
@@ -425,7 +425,7 @@
         featured.appendChild(el);
       });
 
-      // refresh AOS so newly-inserted cards animate
+     
       if(window.AOS) setTimeout(()=>AOS.refresh(),100);
     }
 
@@ -442,12 +442,12 @@
         <p class="muted" style="margin-top:12px">${p.desc}</p>
         <div style="display:flex;gap:8px;margin-top:12px"><button class="btn" onclick="addToCart('${p.id}'); navigateTo('cart')">Add to cart</button><button class="icon-btn" onclick="addToCart('${p.id}')">Quick add</button></div>`;
       root.appendChild(left); root.appendChild(right);
-      // thumbs
+     
       const thumbs = $('#pdThumbs'); ['',''].forEach((_,i)=>{ const t = document.createElement('div'); t.className='thumb'+(i===0?' active':''); t.innerHTML = `<img src="${p.img}" alt="thumb">`; t.addEventListener('click', ()=>{ $$('.thumb').forEach(x=>x.classList.remove('active')); t.classList.add('active'); $('.pd-media img').src = p.img }); thumbs.appendChild(t) });
       navigateTo('productDetail');
     }
 
-    // --- Cart logic ---
+    
     let CART = JSON.parse(localStorage.getItem('pp_cart')||'{}');
     function saveCart(){ localStorage.setItem('pp_cart', JSON.stringify(CART)); updateCartUI(); }
     function addToCart(id){ if(!CART[id]) CART[id]=0; CART[id]++; saveCart(); animateAdd(); }
@@ -470,18 +470,18 @@
           </div>
         </div>`; list.appendChild(node); });
       $('#cartSubtotal').textContent = '₹' + subtotal.toLocaleString(); $('#cartCount').textContent = items.reduce((s,i)=>s+i.qty,0);
-      // mini summary
+      
       const mini = $('#miniSummary'); mini.innerHTML=''; items.forEach(it=>{ const r = document.createElement('div'); r.style.display='flex'; r.style.justifyContent='space-between'; r.style.marginTop='6px'; r.innerHTML = `<div style="font-size:14px">${it.title} × ${it.qty}</div><div style="font-weight:700">₹${(it.price*it.qty).toLocaleString()}</div>`; mini.appendChild(r); }); if(items.length===0){ mini.innerHTML = '<div class="muted">No items in cart</div>' }
     }
 
     function changeQty(id, delta){ const q = (CART[id]||0) + delta; setQty(id,q); }
     function removeItem(id){ delete CART[id]; saveCart(); }
 
-    // cart drawer toggle
+   
     function toggleCart(){ const drawer = $('#cartDrawer'); const open = drawer.classList.toggle('open'); drawer.setAttribute('aria-hidden', !open); $('#cartToggle').setAttribute('aria-expanded', open); }
     $('#cartToggle').addEventListener('click', ()=>toggleCart());
 
-    // cart page render
+   
     function renderCartPage(){ const table = $('#cartTable'); const items = cartItems(); table.innerHTML=''; if(items.length===0){ table.innerHTML = '<div class="muted">Your cart is empty</div>'; $('#cartPageSubtotal').textContent = '₹0'; return }
       items.forEach(it=>{ const row = document.createElement('div'); row.className='cart-row'; row.innerHTML = `
         <img src="${it.img}" alt="${it.title}" style="width:78px;height:78px;object-fit:cover;border-radius:8px">
@@ -493,7 +493,7 @@
         <div style="text-align:right"><div style="font-weight:800">₹${(it.price*it.qty).toLocaleString()}</div><div style="margin-top:8px"><button class="icon-btn" onclick="removeItem('${it.id}')">Remove</button></div></div>`; table.appendChild(row); });
       const subtotal = items.reduce((s,i)=>s+i.price*i.qty,0); $('#cartPageSubtotal').textContent = '₹'+subtotal.toLocaleString(); }
 
-    // checkout
+   
     function openCheckout(){ if(Object.keys(CART).length===0){ alert('Cart is empty'); return } $('#checkoutModal').classList.add('open'); $('#checkoutModal').setAttribute('aria-hidden', false); }
     function closeCheckout(){ $('#checkoutModal').classList.remove('open'); $('#checkoutModal').setAttribute('aria-hidden', true); }
 
@@ -515,28 +515,27 @@
 
     function downloadInvoice(e,orderId){ e.preventDefault(); const invoice = `Invoice - ${orderId}\nShop: PRECIOUS PEARL\nDate: ${new Date().toLocaleString()}\n\n(For demo only)`; const blob = new Blob([invoice],{type:'text/plain'}); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href=url; a.download = orderId + '.txt'; a.click(); URL.revokeObjectURL(url); }
 
-    // small flourish when adding
+    
     function animateAdd(){ const btn = document.querySelector('.btn'); if(!btn) return; btn.classList.add('pulse'); setTimeout(()=>btn.classList.remove('pulse'),600); }
 
-    // init
+   
     renderProducts(); updateCartUI(); handleHash();
 
-    // close drawer when clicking outside
+   
     document.addEventListener('click',(e)=>{ const drawer = $('#cartDrawer'); if(!drawer.contains(e.target) && !$('#cartToggle').contains(e.target) && drawer.classList.contains('open')){ drawer.classList.remove('open'); drawer.setAttribute('aria-hidden', true); } });
 
-    // contact form
     $('#contactForm').addEventListener('submit', (e)=>{ e.preventDefault(); alert('Thanks! Your message has been sent (demo).'); $('#contactForm').reset(); navigateTo('home'); });
 
-    // expose for console convenience
+  
     window.addToCart = addToCart; window.toggleCart = toggleCart; window.clearCart = clearCart; window.changeQty = changeQty; window.removeItem = removeItem; window.openCheckout = openCheckout; window.closeCheckout = closeCheckout; window.placeOrder = placeOrder; window.closeConfirm = closeConfirm; window.downloadInvoice = downloadInvoice; window.navigateTo = navigateTo; window.openProductDetail = openProductDetail;
   </script>
 
-  <!-- AOS JS -->
+  
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function(){
       if(window.AOS) AOS.init({ duration: 650, once: true, easing: 'ease-out-cubic' });
-      // small defer refresh to apply to initial dynamic content
+  
       setTimeout(()=>{ if(window.AOS) AOS.refresh(); }, 120);
     });
   </script>
@@ -556,5 +555,6 @@ menuToggle.addEventListener("click", () => {
 
 </body>
 </html>
+
 
 
